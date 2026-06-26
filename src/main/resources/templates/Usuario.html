@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios | MULTIPRO</title>
+    <link rel="stylesheet" href="/css/stylesusuario.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Gestión de Usuarios</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Proveedor">Lista de Proveedores</a></li>
+        <li><a href="/Destino">Lista de Destinos</a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario"><u>Usuarios</u></a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div th:if="${success}"
+         class="success">
+
+        <p th:text="${success}"></p>
+
+    </div>
+
+    <div th:if="${error}"
+         class="error">
+
+        <p th:text="${error}"></p>
+
+    </div>
+
+    <div th:if="${errorPermiso}"
+         class="error-permiso">
+
+        <p th:text="${errorPermiso}"></p>
+
+    </div>
+    <div class="header-section">
+        <h2>Lista de Usuarios</h2>
+        <div class="filtros">
+
+            <input type="text"
+                   id="filtroNombreUsuario"
+                   placeholder="Buscar usuario">
+
+            <select id="filtroRolUsuario">
+
+                <option value="">
+                    Todos los roles
+                </option>
+
+                <option value="Dueño">
+                    Dueño
+                </option>
+
+                <option value="Administrador">
+                    Administrador
+                </option>
+
+                <option value="Asistente">
+                    Asistente
+                </option>
+
+            </select>
+
+            <select id="filtroEstadoUsuario">
+
+                <option value="">
+                    Todos los estados
+                </option>
+
+                <option value="Activo">
+                    Activo
+                </option>
+
+                <option value="Inactivo">
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+        <a href="/NuevoUsu" class="btn-agregar">+ Nuevo Usuario</a>
+    </div>
+
+    <section class="tabla-contenedor">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="u : ${usuarios}" class="fila-usuario">
+                <td th:text="${u.idUsuario}"></td>
+                <td class="nombre-usuario"
+                    th:text="${u.usuNombre}">
+                </td>
+                <td th:text="${u.usuCorreo}"></td>
+                <td class="rol-usuario"
+                    th:text="${u.usuRol}">
+                </td>
+
+                <td class="estado-usuario"
+                    th:text="${u.usuEstado}">
+                </td>
+
+                <td>
+
+                    <a th:href="@{'/editarUsuario/' + ${u.idUsuario}}" class="edit">Editar</a>
+
+                    <th:block th:if="${
+                    (session.usuarioLogueado.usuRol == 'Dueño'
+                    and session.usuarioLogueado.idUsuario != u.idUsuario)
+
+                    or
+
+                (session.usuarioLogueado.usuRol == 'Administrador'
+                and u.usuRol == 'Asistente')
+                    }">
+
+                        <a th:href="@{/cambiarEstadoUsuario/{id}
+                     (id=${u.idUsuario})}">
+
+                            <button
+                                    th:text="${u.usuEstado == 'Activo'
+                     ? 'Inactivar'
+                        : 'Activar'}"
+
+                                    th:classappend="${u.usuEstado == 'Activo'}
+                        ? ' btn-eliminar'
+                        : ' btn-activar'">
+
+                            </button>
+
+                        </a>
+
+                    </th:block>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+<script src="/js/Usuario.js"></script>
+</body>
+</html>

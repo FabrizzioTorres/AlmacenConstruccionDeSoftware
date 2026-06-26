@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Destino</title>
+    <link rel="stylesheet" href="/css/styleseditarcat.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Editar Destino</span>
+</header>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2><b>Editar Destino</b></h2>
+    </div>
+
+    <section class="form-contenedor">
+        <p th:if="${error}"
+           class="error">
+
+            [[${error}]]
+
+        </p>
+        <form th:action="@{/actualizarDestino}"
+              th:object="${destino}"
+              method="post">
+
+            <label>RUC</label>
+
+            <input type="text"
+                   th:value="*{idDestino}"
+                   readonly>
+
+            <input type="hidden"
+                   th:field="*{idDestino}">
+
+            <label>Nombre</label>
+
+            <input type="text"
+                   th:field="*{desNombre}" placeholder="Ingrese el Nobmre"
+                   required>
+
+            <label>Dirección</label>
+
+            <input type="text"
+                   th:field="*{desDireccion}"
+                   required>
+
+            <label>Contacto</label>
+
+            <input type ="text" th:field="*{desContacto}" placeholder="Ingrese el contacto"
+                    required>
+
+            <label>Descripción</label>
+
+            <textarea
+                    th:field="*{desDescripcion}"
+                    rows="5">
+            </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+                    Actualizar
+                </button>
+
+                <a href="/Destino"
+                   class="btn-cancelar">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

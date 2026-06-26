@@ -1,0 +1,277 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    overflow-x: hidden;
+}
+
+
+
+
+.topbar {
+    background: #0a2540;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.container {
+    padding: 30px;
+}
+
+
+
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-agregar {
+    background: #00aaff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.btn-agregar:hover {
+    background: #0077cc;
+}
+
+
+
+.tabla-contenedor {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #1e3a8a;
+    color: white;
+    padding: 12px;
+}
+
+
+td {
+    padding: 12px;
+    text-align: center;
+}
+
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+
+form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+
+form textarea {
+    height: 80px;
+    resize: none;
+}
+
+
+form button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+form button:hover {
+    background: #1e40af;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+thead {
+    background: #2563eb;
+    color: white;
+}
+
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+.btn-eliminar {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-eliminar:hover {
+    background: #b91c1c;
+}
+.btn-activar{
+    background:#16a34a;
+    color:white;
+}
+.btn-activar:hover{
+    background:#15803d;
+}
+.edit {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.edit:hover{
+    background: #f5850a;
+}
+.delete {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.delete:hover {
+    background: #b91c1c;
+}
+nav {
+    background-color: #162f6a;
+    padding: 10px;
+}
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav ul li {
+    margin: 0 15px;
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #0a2540;
+    color: white;
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.btn {
+    background: #0a2540;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.error {
+
+    width: 80% !important;
+    margin: 15px auto!important;
+
+    background: #ffe5e5!important;
+    color: #b30000!important;
+
+    border: 1px solid #ffb3b3!important;
+    border-radius: 5px!important;
+
+    padding: 12px!important;
+    text-align: center!important;
+    font-weight: bold!important;
+}
+
+.success {
+
+    width: 80% !important;
+    margin: 15px auto !important;
+
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+
+    border: 1px solid #6ee7b7 !important;
+    border-radius: 8px !important;
+
+    padding: 12px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+}
+.error-permiso {
+
+    width: 80% !important;
+    margin: 15px auto!important;
+
+    background: #ffe5e5!important;
+    color: #b30000!important;
+
+    border: 1px solid #ffb3b3!important;
+    border-radius: 5px!important;
+
+    padding: 12px!important;
+    text-align: center!important;
+    font-weight: bold!important;
+}

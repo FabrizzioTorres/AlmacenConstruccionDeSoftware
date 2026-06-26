@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylesnuevacat.css">
+    <link rel="stylesheet" href="/css/modals.css"></link>
+</head>
+
+<body>
+
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Registrar Nueva Categoría</span>
+</header>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2><b>Nueva Categoría</b></h2>
+        <div th:if="${error}"
+             class="error">
+
+            <p th:text="${error}"></p>
+
+        </div>
+    </div>
+
+    <section class="form-contenedor">
+        <form th:action="@{/guardarCategoria}"
+              th:object="${categoria}"
+              method="post">
+
+            <label>Categoría</label>
+
+            <input type="text"
+                   th:field="*{catNombre}"
+                   required
+                   placeholder="Ingrese el nombre de la categoría">
+
+            <label>Descripción</label>
+
+            <textarea
+                    th:field="*{catDescripcion}"
+                    rows="4"
+                    placeholder="Ingrese una descripción">
+    </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+
+                    Guardar
+
+                </button>
+
+                <a href="/Categoria"
+                   class="btn-cancelar">
+
+                    Cancelar
+
+                </a>
+
+            </div>
+
+        </form>
+    </section>
+</main>
+
+
+<script src="/js/modals.js"></script>
+
+
+</body>
+
+</html>

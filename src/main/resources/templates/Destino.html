@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Destinos | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylescategoria.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Gestión de Destinos</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Proveedor">Lista de Proveedores</a></li>
+        <li><a href="/Destino"><u>Lista de Destinos</u></a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2><b>Lista de Destinos</b></h2>
+        <div class="filtros">
+
+            <input type="text"
+                   id="filtroNombreDestino"
+                   placeholder="Buscar destino">
+
+            <select id="filtroResponsableDestino">
+
+                <option value="">
+                    Todos los responsables
+                </option>
+
+            </select>
+
+            <select id="filtroEstadoDestino">
+
+                <option value="">
+                    Todos los estados
+                </option>
+
+                <option value="Activo">
+                    Activo
+                </option>
+
+                <option value="Inactivo">
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+        <a href="/NuevoDestino"
+           class="btn-agregar">
+            + Nuevo Destino
+        </a>
+    </div>
+
+    <section class="tabla-contenedor">
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>RUC</th>
+                <th>Destino</th>
+                <th>Contacto</th>
+                <th>Dirección</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="destino : ${destinos}" class="fila-destino">
+
+                <td th:text="${destino.idDestino}"></td>
+
+                <td class="nombre-destino"
+                    th:text="${destino.desNombre}">
+                </td>
+
+                <td class="contacto-destino"
+                    th:text="${destino.desContacto}">
+                </td>
+
+                <td th:text="${destino.desDireccion}">
+                </td>
+
+                <td class="estado-destino"
+                    th:text="${destino.desEstado}">
+                </td>
+
+                <td>
+                    <a th:href="@{/VerMasDestino/{id}(id=${destino.idDestino})}">
+                        <button class="btn">
+                            Ver Más
+                        </button>
+                    </a>
+                </td>
+                <td>
+
+                    <a th:href="@{/editarDestino/{id}(id=${destino.idDestino})}">
+                        <button class="edit">
+                            Editar
+                        </button>
+                    </a>
+
+                    <a th:href="@{/cambiarEstadoDestino/{id}
+(id=${destino.idDestino})}">
+
+                        <button
+                                th:text="${destino.desEstado == 'Activo'
+        ? 'Inactivar'
+        : 'Activar'}"
+
+                                th:classappend="${destino.desEstado == 'Activo'}
+        ? ' btn-eliminar'
+        : ' btn-activar'">
+
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+<script src="/js/Destino.js"></script>
+</body>
+</html>

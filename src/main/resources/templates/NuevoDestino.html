@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Destino</title>
+    <link rel="stylesheet" href="/css/stylesnuevacat.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Registrar Nuevo Destino</span>
+</header>
+
+<main class="container">
+    <div class="header-section">
+        <h2><b>Nuevo Destino</b></h2>
+    </div>
+    <section class="form-contenedor">
+        <form th:action="@{/guardarDestino}"
+              th:object="${destino}"
+              method="post">
+            <div th:if="${error}"
+                 class="error">
+
+                <p th:text="${error}"></p>
+
+            </div>
+            <label>RUC</label>
+
+            <input type="text"
+                   th:field="*{idDestino}"
+                   maxlength="11"
+                   pattern="[0-9]{11}" placeholder="Ingrese el RUC"
+                   required>
+
+            <label>Nombre</label>
+
+            <input type="text"
+                   th:field="*{desNombre}" placeholder="Ingrese el Nombre"
+                   required>
+
+            <label>Dirección</label>
+
+            <input type="text"
+                   th:field="*{desDireccion}" placeholder="Ingrese la Dirección"
+                   required>
+            <label>Contacto</label>
+
+            <input type ="text" th:field="*{desContacto}" placeholder="Ingrese el contacto"
+                    required>
+
+            <label>Descripción</label>
+
+            <textarea
+                    th:field="*{desDescripcion}"
+                    rows="5">
+            </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+                    Guardar
+                </button>
+
+                <a href="/Destino"
+                   class="btn-cancelar">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Multipro Perú</title>
+    <link rel="stylesheet" href="/css/stylesLogin.css">
+</head>
+
+<body>
+
+
+<main class="container">
+
+    <section class="left"></section>
+
+    <section class="right">
+        <header>
+            <h2>Inicio de Sesión</h2>
+            <p>MULTIPRO PERÚ</p>
+        </header>
+        <form action="/login" method="post">
+            <label>Usuario</label>
+            <input type="text"
+                   name="dni"
+                   placeholder="Ingrese DNI">
+
+            <label>Contraseña</label>
+            <input type="password"
+                   name="password"
+                   placeholder="*****">
+
+
+            <button type="submit">Iniciar Sesión</button>
+            <p class="forgot">
+                <a href="/Recuperacion">¿Olvidó la contraseña?</a><br>
+                <a href="/AccesoRegistro">Crearse una cuenta</a>
+            </p>
+        </form>
+        <p th:if="${error}" class="error">
+
+            [[${error}]]
+
+        </p>
+    </section>
+</main>
+<footer>
+    <p>© 2026 MULTIPRO PERU S.A.C. | Sistema Interno</p>
+</footer>
+</body>
+
+</html>

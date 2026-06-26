@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sistema de gestión de almacén">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Almacén</title>
+    <link rel="stylesheet" href="/css/stylesmain.css">
+
+
+</head>
+
+<body>
+
+
+<header class="topbar">
+    <h1>Página principal</h1>
+    <p>Control de inventario, ingresos, salidas y usuarios</p>
+</header>
+
+
+<nav>
+
+    <ul>
+
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+
+            <li>
+                <a href="/Categoria">
+                    Lista de Categorías
+                </a>
+            </li>
+
+            <li>
+                <a href="/Proveedor">
+                    Lista de Proveedores
+                </a>
+            </li>
+            <li>
+                <a href="/Destino">
+                    Lista de Destinos
+                </a>
+            </li>
+            <li>
+                <a href="/Contacto">
+                    Contacto
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Gestion">
+                Lista de Productos
+            </a>
+        </li>
+        <li>
+            <a href="/Main">
+                <u>Menú Principal</u>
+            </a>
+        </li>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+            <li>
+                <a href="/Metrica">
+                    Métricas
+                </a>
+            </li>
+
+            <li>
+                <a href="/Publicidad">
+                    Publicidad
+                </a>
+            </li>
+
+            <li>
+                <a href="/Usuario">
+                    Usuarios
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Transacciones">
+                Transacciones
+            </a>
+        </li>
+        <li>
+            <a href="/logout"
+               class="btn-logout">
+
+                Cerrar Sesión
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<main>
+    <p th:if="${errorPermiso}"
+       class="error-permiso">
+
+        [[${errorPermiso}]]
+
+    </p>
+    <section class="card">
+        <h2>Bienvenido</h2>
+        <p>
+            Bienvenido al sistema de MULTIPRO PERU S.A.C
+        </p>
+    </section>
+
+
+    <section>
+        <h2>Resumen de cada apartado del Sistema</h2>
+        <section class="modulos">
+
+
+            <article class="modulo">
+                <h3>Lista de Categorías</h3>
+                <p>Registro y Administración de las Categorías.</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Contacto</h3>
+                <p>¡¡Página para contactarnos!!.</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Lista de Productos</h3>
+                <p>Registro y administración de los Productos.</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Métricas</h3>
+                <p>Gráfico de Cantidad de Productos Ingresados por Fecha.</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Publicidad</h3>
+                <p>Publicidad de nuestra Empresa.</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Usuarios</h3>
+                <p>Registro y administración de los Usuarios</p>
+            </article>
+
+            <article class="modulo">
+                <h3>Ingresos</h3>
+                <p>Control de entrada de productos al almacén.</p>
+            </article>
+
+
+            <article class="modulo">
+                <h3>Salidas</h3>
+                <p>Registro de salida de productos.</p>
+            </article>
+
+        </section>
+    </section>
+
+
+</main>
+</body>
+
+</html>
+

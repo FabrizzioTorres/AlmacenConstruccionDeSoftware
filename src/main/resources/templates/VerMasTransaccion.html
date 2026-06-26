@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Detalle Transacción
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesVerMasTransaccion.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+Detalle de Transacción
+</span>
+
+</header>
+
+<main class="container">
+
+    <section class="card">
+
+        <h2>Datos Generales</h2>
+
+        <div class="form-general">
+
+            <div>
+                <label>ID</label>
+                <p th:text="${transaccion.idTransaccion}"></p>
+            </div>
+
+            <div>
+                <label>Tipo</label>
+                <p th:text="${transaccion.tipo}"></p>
+            </div>
+
+
+            <div th:if="${transaccion.tipo == 'Ingreso'}">
+                <label>Proveedor</label>
+                <p th:text="${nombreProveedor}"></p>
+            </div>
+
+
+            <div th:if="${transaccion.tipo == 'Salida'}">
+                <label>Destino</label>
+                <p th:text="${nombreDestino}"></p>
+            </div>
+
+            <div>
+                <label>Responsable</label>
+                <p th:text="${nombreResponsable}"></p>
+            </div>
+
+            <div>
+                <label>Asignado</label>
+                <p th:text="${nombreAsignado}"></p>
+            </div>
+
+            <div>
+                <label>Fecha</label>
+                <p th:text="${transaccion.fecha}"></p>
+            </div>
+
+            <div>
+                <label>Hora</label>
+                <p th:text="${transaccion.hora}"></p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="card">
+
+        <h2>
+            Detalle Productos
+        </h2>
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>#</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Stock Antes</th>
+                <th>Stock Después</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr
+                    th:each="d,iter : ${transaccion.detalles}">
+
+                <td th:text="${iter.index + 1}"></td>
+
+                <td th:text="${d.nombreProducto}"></td>
+
+                <td th:text="${d.cantidad}"></td>
+
+                <td th:text="${d.stockAnterior}"></td>
+
+                <td th:text="${d.stockResultante}"></td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <a href="/Transacciones"
+           class="btn-agregar">
+
+            ⬅ Volver
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Categorías | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylescategoria.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Gestión de Categorías</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria"><u>Lista de Categorías</u></a></li>
+        <li><a href="/Proveedor">Lista de Proveedores</a></li>
+        <li><a href="/Destino">Lista de Destinos</a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div th:if="${success}"
+         class="success">
+
+        <p th:text="${success}"></p>
+
+    </div>
+
+    <div th:if="${error}"
+         class="error">
+
+        <p th:text="${error}"></p>
+
+    </div>
+
+    <div th:if="${errorPermiso}"
+         class="error-permiso">
+
+        <p th:text="${errorPermiso}"></p>
+
+    </div>
+    <div class="header-section">
+        <h2><b>Lista de Categorías</b></h2>
+        <div class="filtros">
+
+            <input type="text"
+                   id="filtroNombre"
+                   placeholder="Buscar categoría">
+
+            <select id="filtroEstado">
+
+                <option value="">
+                    Todos
+                </option>
+
+                <option value="Activo">
+                    Activo
+                </option>
+
+                <option value="Inactivo">
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+        <a href="/NuevaCat" class="btn-agregar">+ Nueva Categoría</a>
+    </div>
+
+    <section class="tabla-contenedor">
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+
+            <tbody>
+            <tr th:each="categoria : ${categorias}">
+
+                <td th:text="${categoria.idCategoria}"></td>
+
+                <td th:text="${categoria.catNombre}"></td>
+
+                <td th:text="${categoria.catEstado}"></td>
+
+                <td>
+
+                    <a th:href="@{/VerMasCategoria/{id}
+           (id=${categoria.idCategoria})}">
+
+                        <button class="btn">
+                            Ver Más
+                        </button>
+
+                    </a>
+
+                </td>
+                <td>
+
+                    <a th:href="@{/editarCategoria/{id}
+           (id=${categoria.idCategoria})}">
+
+                        <button class="edit">
+                            Editar
+                        </button>
+
+                    </a>
+
+                    <a th:href="@{/cambiarEstadoCategoria/{id}
+           (id=${categoria.idCategoria})}">
+
+                        <button class="delete"
+                                th:text="${categoria.catEstado == 'Activo'
+                ? 'Inactivar'
+                : 'Activar'}"
+                                th:classappend="${categoria.catEstado == 'Activo'}
+                ? ' btn-eliminar'
+                : ' btn-activar'">
+
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+    </section>
+
+
+</main>
+<script src="/js/Categoria.js"></script>
+</body>
+</html>
+

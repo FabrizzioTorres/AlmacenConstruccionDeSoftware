@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Transacciones | MULTIPRO PERU S.A.C.</title>
+
+    <link rel="stylesheet"
+          href="/css/stylesTransaccion.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Sistema de Inventario</span>
+</header>
+
+<nav>
+
+    <ul>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+
+            <li>
+                <a href="/Categoria">
+                    Lista de Categorías
+                </a>
+            </li>
+
+            <li>
+                <a href="/Proveedor">
+                    Lista de Proveedores
+                </a>
+            </li>
+
+            <li>
+                <a href="/Destino">
+                    Lista de Destinos
+                </a>
+            </li>
+
+            <li>
+                <a href="/Contacto">
+                    Contacto
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Gestion">
+                Lista de Productos
+            </a>
+        </li>
+        <li>
+            <a href="/Main">
+                Menú Principal
+            </a>
+        </li>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+            <li>
+                <a href="/Metrica">
+                    Métricas
+                </a>
+            </li>
+
+            <li>
+                <a href="/Publicidad">
+                    Publicidad
+                </a>
+            </li>
+
+            <li>
+                <a href="/Usuario">
+                    Usuarios
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Transacciones">
+                <u>Transacciones</u>
+            </a>
+        </li>
+    </ul>
+
+</nav>
+
+<main class="container">
+    <p th:if="${errorPermiso}"
+       class="error-permiso">
+
+        [[${errorPermiso}]]
+
+    </p>
+    <div class="header-section">
+
+        <h2>Gestión de Transacciones</h2>
+
+        <div class="filtros">
+
+            <select id="filtroTipo">
+
+                <option value="">
+                    Todos los tipos
+                </option>
+
+                <option value="Ingreso">
+                    Ingreso
+                </option>
+
+                <option value="Salida">
+                    Salida
+                </option>
+
+            </select>
+
+            <select id="filtroResponsable">
+
+                <option value="">
+                    Todos los responsables
+                </option>
+
+            </select>
+
+            <select id="filtroAsignado">
+
+                <option value="">
+                    Todos los asignados
+                </option>
+
+            </select>
+
+            <input type="date"
+                   id="fechaDesde">
+
+            <input type="date"
+                   id="fechaHasta">
+
+            <input type="time"
+                   id="horaDesde">
+
+            <input type="time"
+                   id="horaHasta">
+
+        </div>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+        <a href="/NuevaTransaccion"
+           class="btn-agregar">
+
+            + Nueva Transacción
+
+        </a>
+        </th:block>
+
+    </div>
+
+    <div class="tabla-contenedor">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Origen/Destino</th>
+                <th>Responsable</th>
+                <th>Asignado</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acción</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr th:each="t : ${transacciones}" class="fila-transaccion">
+
+                <td th:text="${t.idTransaccion}"></td>
+
+                <td class="tipo-transaccion" th:text="${t.tipo}"></td>
+
+                <td th:text="${origenDestino[t.idTransaccion]}"></td>
+
+                <td class="responsable-transaccion" th:text="${responsables[t.idTransaccion]}"></td>
+
+                <td class="asignado-transaccion" th:text="${asignados[t.idTransaccion]}"></td>
+
+                <td class="fecha-transaccion" th:text="${t.fecha}"></td>
+
+                <td class="hora-transaccion"
+                     th:text="${t.hora}"></td>
+
+                <td>
+
+                    <a
+                            th:href="@{/VerMasTransaccion/{id}(id=${t.idTransaccion})}"
+                            class="btn">
+
+                        Ver más
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+<script src="/js/Transaccion.js"></script>
+</body>
+
+</html>

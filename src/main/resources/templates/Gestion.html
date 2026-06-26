@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/stylesgestion.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Sistema de Inventario</span>
+</header>
+
+<nav>
+
+    <ul>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+
+            <li>
+                <a href="/Categoria">
+                    Lista de Categorías
+                </a>
+            </li>
+
+            <li>
+                <a href="/Proveedor">
+                    Lista de Proveedores
+                </a>
+            </li>
+            <li><a href="/Destino">
+                    Lista de Destinos
+                </a>
+            </li>
+            <li>
+                <a href="/Contacto">
+                    Contacto
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Gestion">
+                <u>Lista de Productos</u>
+            </a>
+        </li>
+        <li>
+            <a href="/Main">
+                Menú Principal
+            </a>
+        </li>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+            <li>
+                <a href="/Metrica">
+                    Métricas
+                </a>
+            </li>
+
+            <li>
+                <a href="/Publicidad">
+                    Publicidad
+                </a>
+            </li>
+
+            <li>
+                <a href="/Usuario">
+                    Usuarios
+                </a>
+            </li>
+        </th:block>
+        <li>
+            <a href="/Transacciones">
+                Transacciones
+            </a>
+        </li>
+    </ul>
+
+</nav>
+
+<main class="container">
+    <div th:if="${success}"
+         class="success">
+
+        <p th:text="${success}"></p>
+
+    </div>
+
+    <div th:if="${error}"
+         class="error">
+
+        <p th:text="${error}"></p>
+
+    </div>
+
+    <div th:if="${errorPermiso}"
+         class="error-permiso">
+
+        <p th:text="${errorPermiso}"></p>
+
+    </div>
+    <div class="header-section">
+        <h2><b>Lista de Productos</b></h2>
+        <div class="filtros">
+
+            <input type="text"
+                   id="filtroNombre"
+                   placeholder="Buscar producto">
+
+            <select id="filtroCategoria">
+
+                <option value="">
+                    Todas las categorías
+                </option>
+
+            </select>
+
+            <select id="filtroEstado">
+
+                <option value="">
+                    Todos los estados
+                </option>
+
+                <option value="Activo">
+                    Activo
+                </option>
+
+                <option value="Inactivo">
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+        <th:block
+                th:if="${session.usuarioLogueado.usuRol != 'Asistente'}">
+        <a href="/Producto" class="btn-agregar">+ Nuevo Producto</a>
+        </th:block>
+    </div>
+
+    <div class="tabla-contenedor">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+
+                <th>Producto</th>
+
+                <th>Categoría</th>
+
+                <th>Stock</th>
+
+                <th>Estado</th>
+
+                <th>Detalle</th>
+
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="p : ${productos}" class="fila-producto">
+                <td th:text="${p.idProducto}"></td>
+
+                <td class="nombre-producto"
+                    th:text="${p.prodNombre}">
+                </td>
+
+                <td class="categoria-producto"
+                    th:text="${p.nombCategoria}">
+                </td>
+
+                <td th:text="${p.stock}"></td>
+
+                <td class="estado-producto"
+                    th:text="${p.prodEstado}">
+                </td>
+
+                <td>
+
+                    <a th:href="@{/VerMasProducto/{id}
+            (id=${p.idProducto})}">
+
+                        <button class="btn">
+
+                            Ver Más
+
+                        </button>
+
+                    </a>
+
+                </td>
+
+                <td>
+
+                    <a th:href="@{/editarProducto/{id}
+            (id=${p.idProducto})}">
+
+                        <button class="btn-editar">
+
+                            Editar
+
+                        </button>
+
+                    </a>
+
+                    <a th:href="@{/cambiarEstadoProducto/{id}
+            (id=${p.idProducto})}">
+
+                        <button th:text="${p.prodEstado == 'Activo'
+                ? 'Inactivar'
+                : 'Activar'}"
+
+                                th:classappend="${p.prodEstado == 'Activo'}
+                ? ' btn-eliminar'
+                : ' btn-activar'">
+
+                        </button>
+
+                    </a>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+<script src="/js/Producto.js"></script>
+</body>
+</html>

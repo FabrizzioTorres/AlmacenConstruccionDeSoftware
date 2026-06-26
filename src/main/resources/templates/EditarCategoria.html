@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Categoría</title>
+    <link rel="stylesheet" href="/css/styleseditarcat.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Editar Categoría</span>
+</header>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2><b>Editar Categoría</b></h2>
+    </div>
+
+    <section class="form-contenedor">
+        <p th:if="${error}"
+           class="error">
+
+            [[${error}]]
+
+        </p>
+        <form th:action="@{/actualizarCategoria}"
+              th:object="${categoria}"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{idCategoria}">
+
+            <label>ID Categoría</label>
+
+            <input type="text"
+                   th:value="${categoria.idCategoria}"
+                   readonly>
+
+            <label>Nombre Categoría</label>
+
+            <input type="text"
+                   th:value="${categoria.catNombre}"
+                   readonly>
+
+            <label>Estado</label>
+
+            <input type="text"
+                   th:value="${categoria.catEstado}"
+                   readonly>
+
+
+            <label>Descripción</label>
+
+            <textarea
+                    th:field="*{catDescripcion}"
+                    rows="5">
+            </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+
+                    Actualizar
+
+                </button>
+
+                <a href="/Categoria"
+                   class="btn-cancelar">
+
+                    Cancelar
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>

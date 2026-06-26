@@ -1,0 +1,212 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    overflow-x: hidden;
+}
+
+
+
+.topbar {
+    background: #0a2540;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.container {
+    padding: 30px;
+}
+.btn-activar{
+    background:#16a34a;
+    color:white;
+}
+.error {
+
+    width: 80% !important;
+    margin: 15px auto!important;
+
+    background: #ffe5e5!important;
+    color: #b30000!important;
+
+    border: 1px solid #ffb3b3!important;
+    border-radius: 5px!important;
+
+    padding: 12px!important;
+    text-align: center!important;
+    font-weight: bold!important;
+}
+
+.success {
+
+    width: 80% !important;
+    margin: 15px auto !important;
+
+    background: #d1fae5 !important;
+    color: #065f46 !important;
+
+    border: 1px solid #6ee7b7 !important;
+    border-radius: 8px !important;
+
+    padding: 12px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+}
+
+.btn-eliminar {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-eliminar:hover {
+    background: #b91c1c;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+form button:hover {
+    background: #0056b3;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+table thead {
+    background: #007BFF;
+    color: white;
+}
+
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tabla-contenedor {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+
+
+.btn-agregar {
+    background: #00aaff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.btn-agregar:hover {
+    background: #0077cc;
+}
+
+.edit {
+    background: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.delete {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+nav {
+    background-color: #162f6a;
+    padding: 10px;
+}
+
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav ul li {
+    margin: 0 15px;
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #0a2540;
+    color: white;
+    font-size: 13px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

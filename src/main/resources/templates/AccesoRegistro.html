@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REQUERIMIENTO DE ACCESO | Multipro Perú</title>
+    <link rel="stylesheet" href="/css/stylesLogin.css">
+</head>
+<body>
+<main class="container">
+
+    <section class="left"></section>
+
+    <section class="right">
+        <header>
+            <h2>Verifique su identidad como dueño</h2>
+            <p>MULTIPRO PERÚ</p>
+            <p>Solo los dueños tienen la autorización de crear cuentas</p>
+        </header>
+        <form action="/validarRegistro"
+              method="post">
+
+            <label>
+                DNI del Dueño
+            </label>
+
+            <input
+                    type="text"
+                    name="dniDueño"
+                    maxlength="8"
+                    required>
+
+            <label>
+                Contraseña del Dueño
+            </label>
+
+            <input
+                    type="password"
+                    name="passwordDueño"
+                    required>
+            <section class="botones-form">
+                <button type="submit">
+
+                    Validar
+
+                </button>
+                <a href="/"
+                   class="btn-cancelar">
+
+                    Volver al Login
+                </a>
+            </section>
+        </form>
+
+        <p th:if="${error}" class="error">
+            [[${error}]]
+        </p>
+    </section>
+</main>
+</body>
+</html>

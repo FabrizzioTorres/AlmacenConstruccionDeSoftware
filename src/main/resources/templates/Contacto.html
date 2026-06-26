@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto | MULTIPRO S.A.C.</title>
+
+    <link rel="stylesheet" href="/css/modals.css">
+    <link rel="stylesheet" href="/css/stylescontacto.css">
+</head>
+
+<body>
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>CONTÁCTANOS</span>
+</header>
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Proveedor">Lista de Proveedores</a></li>
+        <li><a href="/Destino">Lista de Destinos</a></li>
+        <li><a href="/Contacto"><u>Contacto</u></a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+
+    <section class="left">
+        <h1>Contáctenos</h1>
+
+
+        <form>
+
+            <label>Empresa</label>
+            <input type="text">
+
+
+            <label>Correo Electrónico</label>
+            <input type="email" placeholder="Ej: correo@gmail.com">
+
+
+            <label>Motivo de contacto</label>
+            <textarea placeholder="Escriba por qué nos está contactando"></textarea>
+
+            <button type="submit"><a href="#" onclick="mostrarGuardar()">Enviar Solicitud</a></button>
+
+        </form>
+    </section>
+
+
+    <section class="right">
+
+
+        <h2 class="titulo-empresa">MULTIPRO PERU S.A.C.</h2>
+
+
+        <!-- Imagen -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzR_gLdMMlq2j-geDmqgDiKe6_e1zgVQiFRA&s"
+             alt="Imagen empresa" class="imagen">
+
+
+    </section>
+
+
+</main>
+
+<div id="modalGuardar" class="modal-overlay">
+
+    <div class="modal-contenido">
+
+        <div class="modal-icono">✔</div>
+
+        <p class="modal-texto">
+            Se envió la solicitud correctamente.
+        </p>
+
+        <button type="submit" class="btn-azul" onclick="cerrarGuardar()">
+            Aceptar
+        </button>
+
+    </div>
+
+</div>
+<script src="/js/modals.js"></script>
+</body>
+
+</html>

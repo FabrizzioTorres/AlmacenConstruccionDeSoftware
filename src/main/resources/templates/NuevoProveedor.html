@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Proveedor</title>
+    <link rel="stylesheet" href="/css/stylesnuevacat.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Registrar Nuevo Proveedor</span>
+</header>
+
+<main class="container">
+    <div class="header-section">
+        <h2><b>Nuevo Proveedor</b></h2>
+    </div>
+
+    <section class="form-contenedor">
+
+        <form th:action="@{/guardarProveedor}"
+              th:object="${proveedor}"
+              method="post">
+            <div th:if="${error}"
+                 class="mensaje-error">
+
+                <p th:text="${error}"></p>
+
+            </div>
+
+            <label>RUC</label>
+
+            <input type="text"
+                   th:field="*{idProveedor}"
+                   maxlength="11"
+                   pattern="[0-9]{11}"
+                   placeholder="Ingrese el RUC"
+                   required>
+
+            <label>Nombre</label>
+
+            <input type="text"
+                   th:field="*{provNombre}" required placeholder="Ingrese el nombre del Proveedor">
+
+            <label>Dirección</label>
+
+            <input type="text"
+                   th:field="*{provDireccion}"
+                   placeholder="Ingrese la dirección"
+                   required>
+
+            <label>Rubro</label>
+
+            <select th:field="*{proRubro}" required>
+
+                <option value="">
+                    Seleccione un rubro
+                </option>
+
+                <option value="Tecnología">
+                    Tecnología
+                </option>
+
+                <option value="Ferretería">
+                    Ferretería
+                </option>
+
+                <option value="Construcción">
+                    Construcción
+                </option>
+
+                <option value="Minería">
+                    Minería
+                </option>
+
+                <option value="Logística">
+                    Logística
+                </option>
+
+                <option value="Industrial">
+                    Industrial
+                </option>
+
+                <option value="Transporte">
+                    Transporte
+                </option>
+
+                <option value="Electrónica">
+                    Electrónica
+                </option>
+
+                <option value="Oficina">
+                    Oficina
+                </option>
+
+                <option value="Limpieza">
+                    Limpieza
+                </option>
+
+                <option value="Seguridad">
+                    Seguridad
+                </option>
+
+                <option value="Alimentos">
+                    Alimentos
+                </option>
+
+            </select>
+
+            <label>Descripción</label>
+
+            <textarea
+                    th:field="*{provDescripcion}"
+                    placeholder="Descripción del proveedor">
+            </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+                    Guardar
+                </button>
+
+                <a href="/Proveedor"
+                   class="btn-cancelar">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+</body>
+</html>

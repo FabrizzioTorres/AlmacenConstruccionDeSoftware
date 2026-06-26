@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.error{
+    color:red !important;
+    margin-top:10px!important;
+    text-align:center!important;
+    font-size:14px!important;
+    font-weight:bold!important;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f6fb;
+}
+
+
+.container {
+    width: 900px;
+    height: 500px;
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Imagen izquierda */
+.left {
+    width: 50%;
+    background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d') center/cover no-repeat;
+}
+
+
+/* Formulario derecha */
+.right {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+
+.right p {
+    text-align: center;
+    color: gray;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.btn-cancelar {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+
+.btn-cancelar:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+input:focus {
+    outline: none;
+    border-color: #5d56e4;
+}
+
+
+button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.botones-form {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+button:hover {
+    background: #574fd6;
+}
+
+
+.forgot {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+
+.forgot a {
+    text-decoration: none;
+    color: #333;
+}
+
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background: #0a2540;
+    color: white;
+    font-size: 13px;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn {
+    background: #6c63ff !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+}
+
+
+.btn:hover {
+    background: #574fd6;
+}

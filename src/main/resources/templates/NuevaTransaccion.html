@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Nueva Transacción
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesNuevaTransaccion.css">
+
+    <link rel="stylesheet"
+          href="/css/modals.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+        Registro de Transacción
+    </span>
+
+</header>
+
+<main class="container">
+    <div th:if="${error}" class="error">
+
+        <span th:text="${error}"></span>
+
+    </div>
+
+    <section class="card">
+
+        <h2>Datos Generales</h2>
+
+        <form
+                action="/guardarTransaccion"
+                method="post"
+                th:object="${transaccion}"
+                onsubmit="return validarFormulario()">
+
+            <label>Tipo</label>
+
+            <select
+                    th:field="*{tipo}"
+                    onchange="cambiarTipo()"
+                    required>
+
+                <option value="">
+                    Seleccione
+                </option>
+
+                <option value="Ingreso">
+                    Ingreso
+                </option>
+
+                <option value="Salida">
+                    Salida
+                </option>
+
+            </select>
+
+            <div id="proveedorContainer">
+
+                <label>Proveedor</label>
+
+                <select
+                        th:field="*{proveedor}" required>
+
+                    <option value="">
+                        Seleccione proveedor
+                    </option>
+
+                    <option
+                            th:each="p : ${proveedores}"
+                            th:value="${p.idProveedor}"
+                            th:text="${p.provNombre}">
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div
+                    id="destinoContainer"
+                    style="display:none;">
+
+                <label>Destino</label>
+
+                <select
+                        th:field="*{destino}" required>
+
+                    <option value="">
+                        Seleccione destino
+                    </option>
+
+                    <option
+                            th:each="d : ${destinos}"
+                            th:value="${d.idDestino}"
+                            th:text="${d.desNombre}">
+                    </option>
+
+                </select>
+
+            </div>
+
+            <label>Responsable</label>
+
+            <select th:field="*{responsable}" required>
+
+                <option value="">
+                    Seleccione un administrador
+                </option>
+
+                <option
+                        th:each="admin : ${responsables}"
+                        th:value="${admin.idUsuario}"
+                        th:text="${admin.usuNombre}">
+                </option>
+
+            </select>
+           <label>Asignado</label>
+
+            <select th:field="*{asignado}" required>
+
+                <option value="">
+                    Seleccione un asistente
+                </option>
+
+                <option
+                        th:each="asis : ${asistentes}"
+                        th:value="${asis.idUsuario}"
+                        th:text="${asis.usuNombre}">
+                </option>
+
+            </select>
+
+            <label>Fecha</label>
+
+            <input type="date"
+                   id="fecha"
+                   th:field="*{fecha}"
+                   required>
+
+            <label>Hora</label>
+
+            <input
+                    type="time"
+                    th:field="*{hora}"
+                    min="08:00"
+                    max="22:00"
+                    step="60"
+                    required>
+
+            <section class="card">
+
+                <h2>
+                    Detalle Productos
+                </h2>
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="detalleProductos">
+
+                    <tr>
+
+                        <td class="indice">
+                            1
+                        </td>
+
+                        <td>
+
+                            <select
+                                    th:field="*{detalles[0].idProducto}"
+                                    onchange="validarDuplicados(this); mostrarStock(this)"
+                                    required>
+                                <option value="">
+                                    Seleccione producto
+                                </option>
+
+                                <option
+                                        th:each="p : ${productos}"
+                                        th:value="${p.idProducto}"
+                                        th:text="${p.prodNombre}"
+                                        th:data-stock="${p.stock}">
+                                </option>
+
+                            </select>
+                            <small class="stock-actual">
+                                Stock actual: -
+                            </small>
+
+                        </td>
+
+                        <td>
+
+                            <input
+                                    type="number"
+                                    min="1"
+                                    th:field="*{detalles[0].cantidad}"
+                                    required>
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                    type="button"
+                                    class="btn-eliminar"
+                                    disabled>
+
+                                X
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+                <button
+                        type="button"
+                        class="btn-agregar"
+                        onclick="agregarFila()">
+
+                    + Agregar Producto
+
+                </button>
+
+            </section>
+
+            <button
+                    type="submit"
+                    class="btn-registrar">
+
+                Registrar
+
+            </button>
+
+        </form>
+
+        <a href="/Transacciones"
+           class="btn-volver">
+
+            ⬅ Volver
+
+        </a>
+
+    </section>
+
+</main>
+
+<script src="/js/modals.js"></script>
+
+</body>
+</html>

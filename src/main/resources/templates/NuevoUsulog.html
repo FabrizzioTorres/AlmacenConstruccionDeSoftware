@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Usuario | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylesnuevousu.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Registrar Usuario</span>
+</header>
+
+
+<main class="container">
+
+
+    <div class="header-section">
+        <h2><b>Nuevo Usuario</b></h2>
+    </div>
+
+
+    <section class="form-contenedor">
+        <h2>Registrar Usuario</h2>
+
+        <p th:if="${error}"
+           class="error">
+
+            [[${error}]]
+
+        </p>
+        <form th:action="@{/guardarUsuariolog}" method="post" th:object="${usuario}">
+            <label>DNI</label>
+            <input type="text"
+                   th:field="*{idUsuario}"
+                   maxlength="8"
+                   pattern="[0-9]{8}"
+                   placeholder="Ingrese DNI"
+                   required>
+            <input type="text" th:field="*{usuNombre}" required placeholder="Ingrese el Nombre">
+            <input type="text" th:field="*{usuCorreo}" required placeholder="Ingrese el Correo ">
+            <input type="password" th:field="*{usuContraseña}" required placeholder="Ingrese du Contraseña">
+
+            <select th:field="*{usuRol}" required>
+                <option value="Dueño">Dueño</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Asistente">Asistente</option>
+            </select>
+
+
+            <div class="botones-form">
+
+                <button type="submit" class="btn" onclick="mostrarGuardar()">
+                    Guardar
+                </button>
+
+                <a href="/" class="btn-cancelar">Cancelar</a>
+
+            </div>
+
+        </form>
+    </section>
+
+
+</main>
+
+<script src="/js/modals.js"></script>
+
+
+<footer>
+    <p>© 2026 MULTIPRO PERU S.A.C. | Sistema Interno</p>
+</footer>
+
+
+</body>
+
+</html>

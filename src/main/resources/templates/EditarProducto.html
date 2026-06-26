@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link rel="stylesheet" href="/css/styleseditarprod.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Editar Producto</span>
+</header>
+
+<main class="container">
+
+    <div class="form-contenedor">
+        <p th:if="${error}"
+           class="error">
+
+            [[${error}]]
+
+        </p>
+        <form th:action="@{/actualizarProducto}" method="post" th:object="${producto}">
+            <div th:if="${error}" class="mensaje-error">
+                <p th:text="${error}"></p>
+            </div>
+            <label>ID Producto</label>
+            <input type="text" th:field="*{idProducto}" readonly>
+            <label>Nombre</label>
+            <input type="text" th:field="*{prodNombre}" readonly>
+            <label>Categoría</label>
+            <select th:field="*{prodCategoria}" required>
+                <option th:each="c : ${categorias}"
+                        th:value="${c.idCategoria}"
+                        th:text="${c.catNombre}">
+                </option>
+            </select>
+            <label>Stock Actual</label>
+            <input type="number"
+                   th:field="*{stock}" readonly>
+            <label>Estado</label>
+            <input type="text"
+                   th:field="*{prodEstado}" readonly>
+            <label>Descripción</label>
+            <textarea
+                    th:field="*{prodDescripcion}" rows="5">
+            </textarea>
+            <div class="botones-form">
+                <button type="submit" class="btn">
+                    Actualizar
+                </button>
+                <a href="/Gestion" class="btn-cancelar">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+
+</main>
+
+</body>
+</html>

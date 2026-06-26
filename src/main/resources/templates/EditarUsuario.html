@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="/css/styleseditarusu.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Editar Usuario</span>
+</header>
+
+<main class="container">
+
+    <div class="form-contenedor">
+        <p th:if="${error}"
+           class="error">
+
+            [[${error}]]
+
+        </p>
+        <form th:action="@{/actualizarUsuario}" method="post" th:object="${usuario}">
+
+            <label>DNI</label>
+            <input type="text"
+                   th:value="*{idUsuario}"
+                   readonly>
+
+            <input type="hidden"
+                   th:field="*{idUsuario}">
+
+            <label>Nombre</label>
+            <input type="text" th:field="*{usuNombre}" readonly>
+
+            <label>Correo</label>
+            <input type="email" th:field="*{usuCorreo}" required>
+
+            <label>Rol</label>
+
+            <select th:if="${usuarioLogueado.usuRol == 'Dueño' and
+                usuarioLogueado.idUsuario != usuario.idUsuario}"
+                    th:field="*{usuRol}">
+
+                <option value="Dueño">
+                    Dueño
+                </option>
+
+                <option value="Administrador">
+                    Administrador
+                </option>
+
+                <option value="Asistente">
+                    Asistente
+                </option>
+
+            </select>
+
+            <input th:if="${usuarioLogueado.idUsuario == usuario.idUsuario}"
+                   type="text"
+                   th:value="*{usuRol}"
+                   readonly>
+
+            <input th:if="${usuarioLogueado.idUsuario == usuario.idUsuario}"
+                   type="hidden"
+                   th:field="*{usuRol}">
+
+            <div class="botones-form">
+                <button type="submit" class="btn">Actualizar</button>
+                <a href="/Usuario" class="btn-cancelar">Cancelar</a>
+            </div>
+            <label>Contraseña</label>
+            <input type="password"
+                   th:field="*{usuContraseña}"
+                   required>
+
+        </form>
+    </div>
+
+</main>
+
+</body>
+</html>

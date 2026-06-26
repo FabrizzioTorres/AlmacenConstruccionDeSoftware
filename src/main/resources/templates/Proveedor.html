@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Proveedores | MULTIPRO PERU S.A.C.</title>
+    <link rel="stylesheet" href="/css/stylescategoria.css">
+    <link rel="stylesheet" href="/css/modals.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Gestión de Proveedores</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Proveedor"><u>Lista de Proveedores</u></a></li>
+        <li><a href="/Destino">Lista de Destinos</a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica">Métricas</a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+    <div class="header-section">
+        <h2><b>Lista de Proveedores</b></h2>
+        <div class="filtros">
+
+            <input type="text"
+                   id="filtroNombreProveedor"
+                   placeholder="Buscar proveedor">
+
+            <select id="filtroRubroProveedor">
+
+                <option value="">
+                    Todos los rubros
+                </option>
+
+            </select>
+
+            <select id="filtroEstadoProveedor">
+
+                <option value="">
+                    Todos los estados
+                </option>
+
+                <option value="Activo">
+                    Activo
+                </option>
+
+                <option value="Inactivo">
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+
+        <a href="/NuevoProveedor"
+           class="btn-agregar">
+            + Nuevo Proveedor
+        </a>
+    </div>
+
+    <section class="tabla-contenedor">
+
+        <table>
+
+            <thead>
+            <tr>
+                <th>RUC</th>
+                <th>Nombre</th>
+                <th>Rubro</th>
+                <th>Dirección</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="proveedor : ${proveedores}" class="fila-proveedor">
+
+                <td th:text="${proveedor.idProveedor}"></td>
+
+                <td class="nombre-proveedor" th:text="${proveedor.provNombre}"></td>
+
+                <td class="rubro-proveedor" th:text="${proveedor.proRubro}"></td>
+
+                <td th:text="${proveedor.provDireccion}"></td>
+
+                <td class="estado-proveedor" th:text="${proveedor.provEstado}"></td>
+
+                <td>
+
+                    <a th:href="@{/VerMasProveedor/{id}
+                           (id=${proveedor.idProveedor})}">
+
+                        <button class="btn">
+                            Ver Más
+                        </button>
+
+                    </a>
+
+                </td>
+
+                <td>
+
+                    <a th:href="@{/editarProveedor/{id}(id=${proveedor.idProveedor})}">
+                        <button class="edit">
+                            Editar
+                        </button>
+                    </a>
+
+                    <a th:href="@{/cambiarEstadoProveedor/{id}
+(id=${proveedor.idProveedor})}">
+                        <button
+                            th:text="${proveedor.provEstado == 'Activo'
+                            ? 'Inactivar'
+                            : 'Activar'}"
+
+                            th:classappend="${proveedor.provEstado == 'Activo'}
+                            ? ' btn-eliminar'
+                            : ' btn-activar'">
+                        </button>
+                    </a>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+<script src="/js/Proveedor.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Detalle Proveedor
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesVerMasTransaccion.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+Detalle del Proveedor
+</span>
+
+</header>
+
+<main class="container">
+
+    <section class="card">
+
+        <h2>Información del Proveedor</h2>
+
+        <div class="form-general">
+
+            <div>
+                <label>ID</label>
+                <p th:text="${categoria.idCategoria}"></p>
+            </div>
+
+            <div>
+                <label>Nombre</label>
+                <p th:text="${categoria.catNombre}"></p>
+            </div>
+
+            <div>
+                <label>Estado</label>
+                <p th:text="${categoria.catEstado}"></p>
+            </div>
+            <div class="campo-descripcion">
+
+                <label>Descripción</label>
+                <textarea readonly
+                          rows="5"
+                          th:text="${categoria.catDescripcion}">
+                </textarea>
+
+            </div>
+        </div>
+
+        <br>
+
+        <a href="/Categoria"
+           class="btn-agregar">
+
+            ⬅ Volver
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

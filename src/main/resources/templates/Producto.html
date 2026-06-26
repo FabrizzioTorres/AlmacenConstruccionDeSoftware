@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Nuevo Producto | MULTIPRO PERU S.A.C.
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesproducto.css">
+
+    <link rel="stylesheet"
+          href="/css/modals.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+        Registrar Producto
+    </span>
+
+</header>
+
+<main class="container">
+
+    <div class="header-section">
+
+        <h2>
+            Nuevo Producto
+        </h2>
+
+    </div>
+
+    <div class="form-contenedor">
+
+        <form id="formProducto"
+              action="/guardarProducto"
+              method="post"
+              th:object="${producto}">
+
+            <div th:if="${error}"
+                 class="error">
+
+                <p th:text="${error}"></p>
+
+            </div>
+
+            <label>
+                Nombre del Producto
+            </label>
+
+            <input type="text"
+                   th:field="*{prodNombre}"
+                   required
+                   placeholder="Ingrese el nombre del producto">
+
+            <label>
+                Categoría
+            </label>
+
+            <select th:field="*{prodCategoria}"
+                    required>
+
+                <option value="">
+                    Seleccione una categoría
+                </option>
+
+                <option th:each="cat : ${categorias}"
+                        th:value="${cat.idCategoria}"
+                        th:text="${cat.catNombre}">
+                </option>
+
+            </select>
+
+            <label>
+                Descripción
+            </label>
+
+            <textarea th:field="*{prodDescripcion}"
+                      rows="5"
+                      placeholder="Descripción del producto">
+            </textarea>
+
+            <div class="botones-form">
+
+                <button type="submit"
+                        class="btn">
+
+                    Guardar
+
+                </button>
+
+                <a href="/Gestion"
+                   class="btn-cancelar">
+
+                    Cancelar
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+</body>
+</html>

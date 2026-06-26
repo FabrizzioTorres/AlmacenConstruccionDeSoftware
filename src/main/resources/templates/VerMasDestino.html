@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Detalle Destino
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesVerMasTransaccion.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+Detalle del Destino
+</span>
+
+</header>
+
+<main class="container">
+
+    <section class="card">
+
+        <h2>
+            Información del Destino
+        </h2>
+
+        <div class="form-general">
+
+            <div>
+                <label>RUC</label>
+                <p th:text="${destino.idDestino}"></p>
+            </div>
+
+            <div>
+                <label>Nombre</label>
+                <p th:text="${destino.desNombre}"></p>
+            </div>
+
+            <div>
+                <label>Dirección</label>
+                <p th:text="${destino.desDireccion}"></p>
+            </div>
+
+            <div>
+                <label>Contacto</label>
+                <p th:text="${destino.desContacto}"></p>
+            </div>
+
+            <div class="campo-descripcion">
+
+                <label>Descripción</label>
+
+                <textarea readonly
+                          th:text="${destino.desDescripcion}">
+                </textarea>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <a href="/Destino"
+           class="btn-agregar">
+
+            ⬅ Volver
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

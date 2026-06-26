@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title> Detalle Producto </title>
+
+    <link rel="stylesheet"
+          href="/css/stylesVerMasTransaccion.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <h1>MULTIPRO PERU S.A.C.</h1>
+
+    <span>
+Detalle del Producto
+</span>
+
+</header>
+
+<main class="container">
+
+    <section class="card">
+        <h2> Información del Producto </h2>
+        <div class="form-general"> <div>
+            <label>ID Producto</label>
+            <p th:text="${producto.idProducto}">
+            </p>
+        </div>
+            <div>
+                <label>Nombre</label>
+                <p th:text="${producto.prodNombre}"> </p>
+            </div>
+            <div>
+                <label>Categoría</label>
+                <p th:text="${producto.nombCategoria}">
+                </p>
+            </div>
+            <div>
+                <label>Stock Actual</label>
+                <p th:text="${producto.stock}"> </p>
+            </div>
+            <div>
+                <label>Estado</label>
+                <p th:text="${producto.prodEstado}">
+                </p>
+            </div>
+            <div class="campo-descripcion">
+                <label>Descripción</label>
+                <textarea readonly rows="5" th:text="${producto.prodDescripcion}">
+                </textarea>
+            </div>
+        </div>
+        <br>
+        <a href="/Gestion" class="btn-agregar">
+            ⬅ Volver
+        </a>
+    </section>
+
+</main>
+
+</body>
+
+</html>
