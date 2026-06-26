@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Métricas | MULTIPRO PERU S.A.C.</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <link rel="stylesheet" href="/css/stylesmetrica.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>MULTIPRO PERU S.A.C.</h1>
+    <span>Métricas del Almacén</span>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/Categoria">Lista de Categorías</a></li>
+        <li><a href="/Proveedor">Lista de Proveedores</a></li>
+        <li><a href="/Destino">Lista de Destinos</a></li>
+        <li><a href="/Contacto">Contacto</a></li>
+        <li><a href="/Gestion">Lista de Productos</a></li>
+        <li><a href="/Main">Menú Principal</a></li>
+        <li><a href="/Metrica"><u>Métricas</u></a></li>
+        <li><a href="/Publicidad">Publicidad</a></li>
+        <li><a href="/Usuario">Usuarios</a></li>
+        <li><a href="/Transacciones">Transacciones</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+
+    <section class="kpi-grid">
+
+        <div class="kpi-card">
+            <h3>Stock Total</h3>
+            <p th:text="${resumen.stockTotal}">0</p>
+            <span>Unidades disponibles</span>
+        </div>
+
+        <div class="kpi-card">
+            <h3>Productos Activos</h3>
+            <p th:text="${resumen.productosActivos}">0</p>
+            <span>Productos habilitados</span>
+        </div>
+
+        <div class="kpi-card">
+            <h3>Usuarios Activos</h3>
+            <p th:text="${resumen.usuariosActivos}">0</p>
+            <span>Usuarios habilitados</span>
+        </div>
+
+        <div class="kpi-card">
+            <h3>Proveedores Activos</h3>
+            <p th:text="${resumen.proveedoresActivos}">0</p>
+            <span>Proveedores disponibles</span>
+        </div>
+
+        <div class="kpi-card">
+            <h3>Transacciones Hoy</h3>
+            <p th:text="${resumen.transaccionesHoy}">0</p>
+            <span>Movimientos del día</span>
+        </div>
+
+    </section>
+
+    <section class="dashboard-grid">
+
+        <div class="card">
+            <h3>1. Ingresos Mensuales</h3>
+            <p class="card-description">
+                Cantidad total de productos ingresados al almacén por mes.
+            </p>
+            <div class="chart-box">
+                <canvas id="ingresosChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>2. Salidas Mensuales</h3>
+            <p class="card-description">
+                Cantidad total de productos retirados del almacén por mes.
+            </p>
+            <div class="chart-box">
+                <canvas id="salidasChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>3. Movimientos Totales</h3>
+            <p class="card-description">
+                Suma mensual de ingresos y salidas registradas.
+            </p>
+            <div class="chart-box">
+                <canvas id="movimientosChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>4. Productos Distintos Movidos</h3>
+            <p class="card-description">
+                Cantidad de productos diferentes que tuvieron movimiento por mes.
+            </p>
+            <div class="chart-box">
+                <canvas id="productosChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>5. Proveedores Utilizados</h3>
+            <p class="card-description">
+                Cantidad de proveedores distintos usados en ingresos mensuales.
+            </p>
+            <div class="chart-box">
+                <canvas id="proveedoresChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Comparación General</h3>
+            <p class="card-description">
+                Comparación de ingresos, salidas y movimientos totales.
+            </p>
+            <div class="chart-box">
+                <canvas id="comparacionChart"></canvas>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="card full-width">
+        <h3>Línea de Tiempo del Almacén</h3>
+
+        <div class="timeline">
+
+            <div class="timeline-item"
+                 th:each="m : ${metricasMensuales}">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h4 th:text="${m.mes}">Mes</h4>
+
+                    <div class="timeline-stats">
+
+                        <span>
+                            Ingresos:
+                            <strong th:text="${m.ingresos}">0</strong>
+                        </span>
+
+                        <span>
+                            Salidas:
+                            <strong th:text="${m.salidas}">0</strong>
+                        </span>
+
+                        <span>
+                            Movimientos:
+                            <strong th:text="${m.movimientos}">0</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card full-width">
+        <h3>Tabla de Métricas Mensuales</h3>
+
+        <table class="tabla-metricas">
+
+            <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Ingresos</th>
+                <th>Salidas</th>
+                <th>Movimientos</th>
+                <th>Productos Movidos</th>
+                <th>Proveedores Usados</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="m : ${metricasMensuales}">
+                <td th:text="${m.mes}">Mes</td>
+                <td th:text="${m.ingresos}">0</td>
+                <td th:text="${m.salidas}">0</td>
+                <td th:text="${m.movimientos}">0</td>
+                <td th:text="${m.productosDistintos}">0</td>
+                <td th:text="${m.proveedoresUsados}">0</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </section>
+
+</main>
+
+<script th:inline="javascript">
+    window.metricas = {
+        meses: /*[[${metricasMensuales.![mes]}]]*/ [],
+        ingresos: /*[[${metricasMensuales.![ingresos]}]]*/ [],
+        salidas: /*[[${metricasMensuales.![salidas]}]]*/ [],
+        movimientos: /*[[${metricasMensuales.![movimientos]}]]*/ [],
+        productosDistintos: /*[[${metricasMensuales.![productosDistintos]}]]*/ [],
+        proveedoresUsados: /*[[${metricasMensuales.![proveedoresUsados]}]]*/ []
+    };
+</script>
+
+<script src="/js/javascriptMetrica.js"></script>
+
+</body>
+
+</html>
